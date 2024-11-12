@@ -1,0 +1,17 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+body{
+    background: #1D0016;
+}
+
+@media (max-width: 500px){
+    body{
+        background: #000;
+    }
+    .meio {
+        background-color: #000;
+    }
+}
