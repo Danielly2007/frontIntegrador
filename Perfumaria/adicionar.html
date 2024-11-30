@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Item</title>
+    <style>
+      .form-container {
+        width: 50%;
+        margin: 0 auto;
+        padding: 20px;
+        margin-top: 250px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .form-container h2 {
+        text-align: center;
+      }
+      .form-container label {
+        display: block;
+        margin-top: 10px;
+      }
+      .form-container input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+      }
+      .form-container button {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #28a745;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .form-container button:hover {
+        background-color: #218838;
+      }
+
+       #voltar{
+        margin-top: 10px;
+        
+      }
+
+      a {
+  color: #ffffff; /* Cor do link */
+  text-decoration: none; /* Remove o sublinhado */
+}
+
+    
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h2>Adicionar Novo Item</h2>
+      <form id="formAdicionarItem">
+        <label for="nomeItem">Nome:</label>
+        <input type="text" id="nomeItem" placeholder="Nome do item" required>
+  
+        <label for="precoItem">Preço:</label>
+        <input type="text" id="precoItem" placeholder="Preço do item" required>
+  
+        <label for="marcaItem">Marca:</label>
+        <input type="text" id="marcaItem" placeholder="Marca do item" required>
+  
+        <label for="imagemItem">Imagem (URL):</label>
+        <input type="text" id="imagemItem" placeholder="URL da imagem">
+  
+        <button type="button" onclick="adicionarItem()">Adicionar Item</button>
+      </form>
+
+      <button id="voltar" ><a href="alteracoes.html">Voltar</a></button>
+    </div>
+    
+  
+    <script>
+      function adicionarItem() {
+        // Obtenha os valores dos campos de entrada
+        let nome = document.getElementById('nomeItem').value.trim();
+        let preco = document.getElementById('precoItem').value.trim();
+        let marca = document.getElementById('marcaItem').value.trim();
+        let imagemURL = document.getElementById('imagemItem').value.trim();
+  
+        if (nome === '' || preco === '' || marca === '') {
+          alert('Por favor, preencha todos os campos obrigatórios antes de adicionar.');
+          return;
+        }
+  
+        // Armazena o item em localStorage para simular a adição na lista principal
+        let item = {
+          nome: nome,
+          preco: preco,
+          marca: marca,
+          imagem: imagemURL
+        };
+  
+        app.put('/http://localhost:8080/perfumaria/10', (req, res) => {
+  const dados = req.body; // Recebe os dados do frontend
+  console.log(dados); // Salvar no banco de dados aqui
+  res.status(200).json({ mensagem: 'Dados salvos com sucesso' });
+});
+
+        // let itens = JSON.parse(localStorage.getItem('itens')) || [];
+        // itens.push(item);
+        // localStorage.setItem('itens', JSON.stringify(itens));
+  
+        alert('Item adicionado com sucesso!');
+  
+        // Limpa os campos após a adição
+        document.getElementById('nomeItem').value = '';
+        document.getElementById('precoItem').value = '';
+        document.getElementById('marcaItem').value = '';
+        document.getElementById('imagemItem').value = '';
+      }
+    </script>
+</body>
+</html>
